@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Lista de Clientes</title>
+    <style>
+      .contenedor {
+        width: 50%;
+        margin: 30px auto 0;
+      }
+
+      .latablita {
+        width: 100%;
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+      }
+
+      .latablita td {
+        border: 1px solid black;
+      }
+
+      .latablita thead {
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .contenedor {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="contenedor">
+      <table class="latablita">
+        <thead>
+          <td>Nombres:</td>
+          <td>Edades:</td>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer[:nombre] %></td>
+            <td><%= customer[:edad] %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <h1>
+        <% if @nombre != nil %>
+          <%= @nombre[:nombre] %>
+          <%= @nombre[:edad] %>
+          <% end %>
+      </h1>
+    </section>
+  </body>
+</html>
