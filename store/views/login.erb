@@ -1,0 +1,9 @@
+<% if @register %>
+  <h1>El email <%= @register %> esta registrado</h1>
+<% else %>
+  <form action="/login" method="post">
+    <input type="text" name="username">
+    <input type="email" name="email">
+    <input type="submit" value="Entrar">
+  </form>
+<% end %>
