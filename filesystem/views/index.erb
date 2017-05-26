@@ -1,0 +1,17 @@
+Login Form
+<% if @errors %>
+  <% @errors.each do |error| %>
+    <p><%= error[:message] %></p>
+  <% end %>
+<% end %>
+<form action="/login" method="post">
+  <label for="email">
+    Email:
+    <input type="email" name="email">
+  </label>
+  <label for="password">
+    Password:
+    <input type="password" name="password">
+  </label>
+  <input type="submit" value="Enviar">
+</form>
