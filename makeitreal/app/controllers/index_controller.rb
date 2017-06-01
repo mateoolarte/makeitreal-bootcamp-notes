@@ -1,9 +1,8 @@
 class IndexController < ApplicationController
-  def holi
-
+  def index
   end
 
   def root
-    render "holi"
+    render "index"
   end
 end
