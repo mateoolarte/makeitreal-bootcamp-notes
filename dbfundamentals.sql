@@ -39,3 +39,53 @@ id(1) salchichon   id(1) p_id(1) o:id(1)   id(1) 0_001 track_001
 2 limon            id(2) p_id(3) o:id(1)
 3 pan              id(3) p_id(4) o:id(1)
 4 cocacola
+
+INSERT INTO orders (order_no, traking_no) VALUES ('order_001', '01');
+INSERT INTO orders (order_no, traking_no) VALUES ('order_002', '02');
+
+INSERT INTO orders_details (product_id, order_id) VALUES (1, 2);
+INSERT INTO orders_details (product_id, order_id) VALUES (1, 1);
+
+//// Hotels ////
+
+CREATE table rooms (
+  id serial PRIMARY KEY,
+  user_id int REFERENCES users(id)
+);
+
+CREATE table users (
+  id serial PRIMARY KEY,
+  name varchar(50) NOT NULL
+);
+
+INSERT INTO rooms (room_no) VALUES (101);
+INSERT INTO rooms (room_no) VALUES (102);
+INSERT INTO rooms (room_no) VALUES (103);
+INSERT INTO rooms (room_no) VALUES (201);
+INSERT INTO rooms (room_no) VALUES (202);
+INSERT INTO rooms (room_no) VALUES (203);
+
+INSERT INTO users (name) VALUES ('Pepe');
+INSERT INTO users (name) VALUES ('Rodrigo');
+INSERT INTO users (name) VALUES ('James');
+INSERT INTO users (name) VALUES ('Mateo');
+
+UPDATE rooms set user_id = 1 where room_no = 101;
+UPDATE rooms set user_id = 2 where room_no = 201;
+UPDATE rooms set user_id = 3 where room_no = 102;
+
+select * from rooms;
+
+select * from rooms, users where rooms.user_id = users.id;
+
+select rooms.* from rooms, users where rooms.user_id = users.id
+
+select users.* from rooms, users where rooms.user_id = users.id
+
+select * from rooms join users on rooms.user_id = users.id;
+
+select * from rooms join users on rooms.user_id = users.id WHERE users.name = 'Rodrigo';
+
+select * from rooms left join users on rooms.user_id = users.id;
+
+select * from rooms right join users on rooms.user_id = users.id;
