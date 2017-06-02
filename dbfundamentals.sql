@@ -23,6 +23,10 @@ CREATE table orders_details (
 );
 
 INSERT INTO products (name, price) VALUES ('Jugo', 2500);
+INSERT INTO products (name, price) VALUES ('TV', 10000);
+INSERT INTO products (name, price) VALUES ('PC', 20000);
+INSERT INTO products (name, price) VALUES ('Github', 15000);
+INSERT INTO products (name, price) VALUES ('Makeitreal', 450000);
 
 select * from products;
 
@@ -43,8 +47,11 @@ id(1) salchichon   id(1) p_id(1) o:id(1)   id(1) 0_001 track_001
 INSERT INTO orders (order_no, traking_no) VALUES ('order_001', '01');
 INSERT INTO orders (order_no, traking_no) VALUES ('order_002', '02');
 
-INSERT INTO orders_details (product_id, order_id) VALUES (1, 2);
-INSERT INTO orders_details (product_id, order_id) VALUES (1, 1);
+INSERT INTO orders_details (product_id, order_id) VALUES (1, 3);
+INSERT INTO orders_details (product_id, order_id) VALUES (2, 3);
+
+INSERT INTO orders_details (product_id, order_id) VALUES (3, 4);
+INSERT INTO orders_details (product_id, order_id) VALUES (5, 4);
 
 //// Hotels ////
 
