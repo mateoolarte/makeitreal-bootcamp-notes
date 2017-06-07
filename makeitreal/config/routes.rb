@@ -10,6 +10,12 @@ Rails.application.routes.draw do
 
   get "products/:name" => "product#view_product", as: "product"
 
+  get "ecommerce" => "ecommerce#show"
+
+  get "ecommerce/new" => "ecommerce#add"
+
+  post "ecommerce/create" => "ecommerce#create"
+
   get "index" => "index#index"
 
   root "index#root"
