@@ -16,6 +16,10 @@ Rails.application.routes.draw do
 
   post "ecommerce/create" => "ecommerce#create"
 
+  get "login/" => "user#show"
+  
+  post "login/send" => "user#get"
+
   get "index" => "index#index"
 
   root "index#root"

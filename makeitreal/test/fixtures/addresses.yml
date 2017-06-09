@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  oneline: MyText
+  twoline: MyText
+  zip: 1
+  user: one
+
+two:
+  oneline: MyText
+  twoline: MyText
+  zip: 1
+  user: two
