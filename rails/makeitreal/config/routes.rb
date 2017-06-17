@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :invoices
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'holi/crear', as: "yepeto"
 
@@ -17,10 +19,14 @@ Rails.application.routes.draw do
   post "ecommerce/create" => "ecommerce#create"
 
   get "login/" => "user#show"
-  
+
   post "login/send" => "user#get"
 
   get "index" => "index#index"
+
+  get "/search", to: "index#search"
+
+  get "/users", to: "user#index"
 
   root "index#root"
 end

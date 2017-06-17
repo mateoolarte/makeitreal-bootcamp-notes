@@ -1,6 +1,6 @@
 class UserController < ApplicationController
-  def show
-
+  def index
+    @users = User.all
   end
 
   def get
@@ -8,5 +8,14 @@ class UserController < ApplicationController
     password = params[:password]
     @user = User.new username: username, password: password
     render login_path
+  end
+
+  def search
+    puts params[:email]
+    @user = User
+      .includes(:orders)
+      .includes(orders: :products)
+      .find_by email: params[:email]
+    render :"user/index"
   end
 end
