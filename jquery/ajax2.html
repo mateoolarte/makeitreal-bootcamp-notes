@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Random User API</title>
+</head>
+<body>
+  <div class="container">
+
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script>
+  function callUsers(callback) {
+    $.ajax({
+      url: 'https://randomuser.me/api/',
+      data: {
+        format: "json",
+        results: 5
+      },
+      method: "GET"
+    })
+    .done(function (data, status, XHR) {
+      callback(null, data)
+    })
+    .fail(function(XHR, status, error) {
+      var errorMsg = JSON.parse(XHR.responseText).error
+      callback(errorMsg, null)
+    })
+  }
+
+  function paintUsers(data) {
+    data.results.forEach(function(value, index) {
+      var $picture = $('<img src=' + value.picture.thumbnail +' alt="" />')
+      var $name = $("<h1>Mi nombre es: "+ value.name.first + " " + value.name.last +"</h1>")
+      var $email = $('<a href="mailto:'+ value.email +'">'+ value.email +'</a>')
+      var $boxContainer = $('<div class="box-user"></div>')
+      $($boxContainer).append($picture)
+      $($boxContainer).append($name)
+      $($boxContainer).append($email)
+      $(".container").append($boxContainer)
+    })
+  }
+
+  $(document).ready(function() {
+    callUsers(function(error, data) {
+      if (error) {
+        alert(error)
+      } else {
+        paintUsers(data)
+      }
+    })
+  })
+
+  </script>
+</body>
+</html>

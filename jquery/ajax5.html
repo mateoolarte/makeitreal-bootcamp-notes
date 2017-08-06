@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script>
+    function createUser (data) {
+      return $.ajax({
+        url: "https://reqres.in/api/users",
+        data: data,
+        method: "POST"
+      })
+    }
+
+    function createOrder (data) {
+      return $.ajax({
+        url: "https://reqres.in/api/orders",
+        data: data,
+        method: "POST"
+      })
+    }
+
+    function createOrderItem (data) {
+      return $.ajax({
+        url: "https://reqres.in/api/items",
+        data: data,
+        method: "POST"
+      })
+    }
+
+    function updateOrder (order) {
+      return $.ajax({
+        url: "https://reqres.in/api/orders"+ order.id,
+        data: order,
+        method: "PATCH"
+      })
+    }
+
+    var order = {
+      customer: null,
+      total: 0,
+      state: "uncharged"
+    }
+
+    var items = [
+      { name: "Zapatos Nile", quantity: 3, price: 15000, order: null },
+      { name: "Gorra Adidas", quantity: 5, price: 42000, order: null },
+      { name: "Pantalon Jef", quantity: 1, price: 87000, order: null }
+    ]
+
+    var customer = {
+      username: "yepeto@ex.com",
+      password: "123456"
+    }
+
+    var user1 = {}
+    var order1 = {}
+    var item1 = []
+
+    createUser(customer)
+    .then(function(user) {
+      user1 = user
+    })
+    createOrder(order)
+    .then(function(ord) {
+      order1 = ord.id
+    })
+    createOrderItem(items)
+    .then(function(item) {
+      item1 = item
+    })
+    updateOrder(order1)
+    .then(function(updateorder) {
+      console.log(updateorder)
+    })
+  </script>
+</body>
+</html>

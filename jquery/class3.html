@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Carrito de compras</h1>
+  <table class="container-items">
+    <tr>
+      <td>Nombre</td>
+      <td>Precio</td>
+    </tr>
+  </table>
+  <form id="add-product">
+    <input type="text" name="name">
+    <input type="number" name="price">
+    <button type="submit" class="add-button">Agregar</button>
+  </form>
+  <p>Numero de productos: <strong class="count-products"></strong></p>
+  <p>Valor total: <strong class="total-products"></strong></p>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script>
+    var totalElements = 0;
+    var totalProducts = 0;
+    $("#add-product").submit(function(e) {
+      e.preventDefault();
+      totalElements++
+      var $name = $('input[name="name"]').val();
+      var $price = $('input[name="price"]').val();
+
+      $(".container-items").append("<tr class='item'><td>" + $name + "</td><td class='price'><strong>" + $price + "</strong><button class='delete'>Borrar</button></td></tr>");
+      $(".count-products").html(totalElements);
+
+      totalProducts += parseInt($price)
+
+      $(".total-products").html(totalProducts);
+    });
+
+    $(document).on("click", ".delete", function() {
+      totalElements--
+      var self = $(this)
+      self.parent().parent().remove();
+      $(".count-products").html(totalElements);
+
+      var value = $(this).parents(".price").find("strong").text();
+      value = parseInt(value)
+      totalProducts -= value
+
+      $(".total-products").html(totalProducts);
+    });
+  </script>
+</body>
+</html>

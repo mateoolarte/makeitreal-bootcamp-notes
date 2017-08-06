@@ -10,10 +10,10 @@ class UsersController < ApplicationController
   def update
   end
 
-  def destroy
-  end
-
   def posts
     @posts = User.includes(:posts).find(current_user.id).posts
+  end
+
+  def destroy
   end
 end
